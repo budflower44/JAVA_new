@@ -66,7 +66,8 @@ public class BoardDAOImpl implements DAO {
 				String title = rs.getString("title");
 				String writer = rs.getString("writer");
 				String moddate = rs.getString("moddate");
-				list.add(new BoardVO(bno, title, writer, moddate));
+				int readCount = rs.getInt("readcount");
+				list.add(new BoardVO(bno, title, writer, moddate, readCount));
 			}
 			return list;
 		} catch (SQLException e) {
@@ -77,8 +78,9 @@ public class BoardDAOImpl implements DAO {
 		return null;
 	}
 
+	
+	
 	//상세 페이지용 : 전체  //printDetail()
-	@Override
 	public BoardVO selectOne(int bno) {
 		// TODO Auto-generated method stub
 		System.out.println("selectOne DAO success!!");
@@ -96,7 +98,8 @@ public class BoardDAOImpl implements DAO {
 							rs.getString("writer"),
 							rs.getString("content"),
 							rs.getString("regdata"),
-							rs.getString("moddate"));
+							rs.getString("moddate"),
+							rs.getInt("readcount"));
 				}
 	
 		} catch (SQLException e) {
@@ -177,6 +180,26 @@ public class BoardDAOImpl implements DAO {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public int insertReadCount(int bno) {
+		System.out.println("insertReadCount DAO success!!");
+		query = "update board set readCount= readCount+1 where bno = ?";
+		
+		try {
+			pst = conn.prepareStatement(query);
+			
+			pst.setInt(1, bno);
+			
+			return pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("updateReadCount error");
+		}
+		return 0;
 	}
 	
 	

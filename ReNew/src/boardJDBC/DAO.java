@@ -16,4 +16,6 @@ public interface DAO {
 
 	boolean checkNum(int bno);
 
+	int insertReadCount(int bno);
+
 }

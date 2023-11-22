@@ -16,6 +16,7 @@ primary key(bno));
 	private String content;
 	private String regdata;
 	private String moddate;
+	private int readCount;
 	
 	public BoardVO() {}
 	
@@ -34,18 +35,23 @@ primary key(bno));
 	}
 	
 	//전체 리스트용 : bno, title, writer, moddate
-	public BoardVO(int bno, String title, String writer, String moddate) {
+	public BoardVO(int bno, String title, String writer, String moddate, int readCount) {
 		this.bno = bno;
 		this.title = title;
 		this.writer = writer;
 		this.moddate = moddate;
+		this.readCount = readCount;
 	}
 	
 	//상세 페이지용 : 전체
-	public BoardVO(int bno, String title, String writer, String content, String regdata, String moddate) {
-		this(bno, title, writer, moddate);
+	public BoardVO(int bno, String title, String writer, String content, String regdata, String moddate, int readCount) {
+		this.bno = bno;
+		this.title = title;
+		this.writer = writer;
+		this.moddate = moddate;
 		this.content = content;
 		this.regdata = regdata;
+		this.readCount = readCount;
 	}
 	
 	//상세 페이지용 출력 메서드
@@ -54,6 +60,7 @@ primary key(bno));
 		System.out.println("제목:"+title+"       ("+moddate+")");
 		System.out.println("내용:");
 		System.out.println(content);
+		System.out.println("조회수:"+readCount);
 	}
 
 	public int getBno() {
@@ -104,10 +111,21 @@ primary key(bno));
 		this.moddate = moddate;
 	}
 
+	
+	public int getReadCount() {
+		return readCount;
+	}
+
+	public void setReadCount(int readCount) {
+		this.readCount = readCount;
+	}
+
 	@Override
 	public String toString() {
-		return "BoardVO [bno=" + bno + ", title=" + title + ", writer=" + writer + ", date=" + moddate + "]";
+		return "BoardVO [bno=" + bno + ", title=" + title + ", writer=" + writer + ", moddate=" + moddate
+				+ ", readCount=" + readCount + "]";
 	}
+
 	
 	
 	

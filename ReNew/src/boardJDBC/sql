@@ -14,3 +14,10 @@ content text,
 regdata datetime default now(),
 moddate datetime default now(), 
 primary key(bno));
+
+
+조회수 readCount 생성
+- default 0을 반드시 설정 / 주지 않으면 값이 null / null은 연산이 안됨.
+
+alter table board add readcount int default 0;
+- db의 변경이 이루어지면 반드시 => VO 변경

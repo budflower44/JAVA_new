@@ -85,7 +85,7 @@ public class BoardController {
 			BoardVO bVO = svc.showListOne(bno);
 			if (bVO != null) {
 	            // 해당 번호의 글이 존재하면 출력
-	            bVO.printDetail();	
+				bVO.printDetail();
 			}
 		}else {
 			System.out.println("찾는 번호가 없습니다.");
